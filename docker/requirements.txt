@@ -1,0 +1,12 @@
+matplotlib
+h5py
+pandas
+pydot
+jupyter
+matplotlib
+seaborn
+scikit-image
+scikit-learn
+tensorflow
+keras
+opencv-contrib-python
