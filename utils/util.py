@@ -2,7 +2,7 @@ import pickle
 import cv2
 from sklearn.model_selection import train_test_split
 import numpy as np
-from skimage import transform
+from keras.models import model_from_json
 
 def save_everything(model,file_name, history):
     """
@@ -34,8 +34,6 @@ def resize_data(images, imx, imy):
     images = images.reshape((-1, 28, 28,1))
     images_res = np.zeros((images.shape[0], imx, imy,1))
     for i in range(images.shape[0]):
-        #cv2.imwrite('r/'+str(i)+'.jpg', cv2.resize(images[i, ..., 0].astype('float32'), (imx, imy)))
-        #images_res[i, ..., 0] = transform.resize(images[i,...,0], (imx, imy))
         images_res[i, ..., 0] = cv2.resize(images[i, ..., 0].astype('float32'), (imx, imy), interpolation = cv2.INTER_CUBIC)
 
     #cv2.imwrite('org.jpg', images[0,...,0])
@@ -85,5 +83,39 @@ def prepare_data(X,y,X_test28,resx=56,resy=56):
     X_val_res /= 255
     return X_train28, X_val28, X_test28, X_train_res, X_val_res, X_test_res, y_train, y_val
     
+    
+def load_model(model_name, optimizer='adam'):
+    """
+    Loads given model
+    """
+    # load json and create model
+    json_file = open('models/'+ str(model_name) + '.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+    # load weights into new model
+    loaded_model.load_weights('models/'+ str(model_name) + '.h5')
+    print("Loaded model from disk")
+
+    # evaluate loaded model on test data
+    loaded_model.compile(loss='categorical_crossentropy', optimizer= optimizer, metrics=['accuracy'])
+    return loaded_model
+
+
+def get_scores(model, x_test, y_test, y_true):
+    num_classes = 10
+    score = model.evaluate(x_test, y_test, verbose=0)
+    #get the predictions for the test data
+    predicted = model.predict(x_test)
+    predicted_classes = predicted.argmax(axis=-1)
+    #get the indices to be plotted
+    correct = np.nonzero(predicted_classes==y_true)[0]
+    incorrect = np.nonzero(predicted_classes!=y_true)[0]
+
+
+    from sklearn.metrics import classification_report
+    target_names = ["Class {}".format(i) for i in range(num_classes)]
+    print(classification_report(y_true, predicted_classes, target_names=target_names))
+    return score
     
     
