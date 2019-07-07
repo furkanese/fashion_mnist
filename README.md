@@ -48,11 +48,11 @@ Container çalışırken konsola token değerini basacaktır, localhost:8888 adr
 
 ### Eğitim
 
-Veriseti indirildikten sonra,
-normal eğitim için training.ipynb
-Early stopping, data augmentation ve ReduceLROnPlateau ile yapılan eğitim için training_with_improv.ipynb
-Transfer learning için pre_trained_tuning.ipynb
-çalıştırılabilir.
+Veriseti indirildikten sonra,<br>
+normal eğitim için training.ipynb<br>
+Early stopping, data augmentation ve ReduceLROnPlateau ile yapılan eğitim için training_with_improv.ipynb<br>
+Transfer learning için pre_trained_tuning.ipynb<br>
+çalıştırılabilir.<br><br>
 
 ### Sonuçlar
-<img src="images/results.png" width="50%">
+<img src="images/results.png" height="50%">
