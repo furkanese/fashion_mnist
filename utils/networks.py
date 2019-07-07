@@ -5,12 +5,10 @@ from keras.applications.vgg16 import VGG16
 from keras.applications import MobileNetV2
 from keras.applications import ResNet50
 from keras.applications import InceptionV3
-from keras.applications.xception import Xception
 from keras.preprocessing.image import ImageDataGenerator
 from keras.layers import GlobalAveragePooling2D, Dense, Input, Dropout
 from keras.models import Model
 from keras.optimizers import RMSprop
-from keras.models import Sequential
 from keras.models import Sequential
 from keras.layers.core import Activation, Flatten
 from keras.layers.convolutional import Conv2D, MaxPooling2D, ZeroPadding2D
@@ -31,7 +29,7 @@ def mlp(num_classes=10, input_shape=(784,)):
     return model
 
 
-def simple_cnn(num_classes=10, input_shape=(32, 32, 1)):
+def simple_cnn(num_classes=10, input_shape=(56, 56, 1)):
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3), activation='relu',
       kernel_initializer='he_normal',
@@ -50,7 +48,7 @@ def simple_cnn(num_classes=10, input_shape=(32, 32, 1)):
     return model
 
 
-def simple_cnn_dropout(num_classes=10, input_shape=(32, 32, 1)):
+def simple_cnn_dropout(num_classes=10, input_shape=(56, 56, 1)):
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3), activation='relu',
       kernel_initializer='he_normal',
@@ -70,7 +68,7 @@ def simple_cnn_dropout(num_classes=10, input_shape=(32, 32, 1)):
     return model
 
 
-def simple_cnn_batchnorm(num_classes=10, input_shape=(32, 32, 1)):
+def simple_cnn_batchnorm(num_classes=10, input_shape=(56, 56, 1)):
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
       kernel_initializer='he_normal',
@@ -92,7 +90,7 @@ def simple_cnn_batchnorm(num_classes=10, input_shape=(32, 32, 1)):
     return model
 
 
-def simple_cnn_batchnorm_Dropout(num_classes=10, input_shape=(32, 32, 1)):
+def simple_cnn_batchnorm_Dropout(num_classes=10, input_shape=(56, 56, 1)):
     model = Sequential()
     model.add(Conv2D(32, kernel_size=(3, 3),
       kernel_initializer='he_normal',
@@ -156,7 +154,7 @@ def alexnet_model(img_shape=(32, 32, 1), n_classes=10, l2_reg=0.0):
     return alexnet
 
 
-def mobilenetV2(num_classes=10, input_shape=(32, 32, 1)):
+def mobilenetV2(num_classes=10, input_shape=(56, 56, 1)):
     mobilenetv2 = MobileNetV2(input_shape=input_shape, alpha=1.0,
       include_top=True,
       weights=None,
@@ -167,17 +165,7 @@ def mobilenetV2(num_classes=10, input_shape=(32, 32, 1)):
     return mobilenetv2
 
 
-def vgg16(num_classes=10, input_shape=(32, 32, 1)):
-    vgg = VGG16(include_top=True, weights=None,
-      input_tensor=None,
-      input_shape=input_shape,
-      pooling=None,
-      classes=num_classes)
-    vgg.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-    return vgg
-
-
-def resnet50(num_classes=10, input_shape=(32, 32, 1)):
+def resnet50(num_classes=10, input_shape=(56, 56, 1)):
     resnet = ResNet50(include_top=True, weights=None,
       input_tensor=None,
       input_shape=input_shape,
@@ -187,7 +175,7 @@ def resnet50(num_classes=10, input_shape=(32, 32, 1)):
     return resnet
 
 
-def inceptionV3(num_classes=10, input_shape=(32, 32, 1)):
+def inceptionV3(num_classes=10, input_shape=(56, 56, 1)):
     inception = InceptionV3(include_top=True, weights=None,
       input_tensor=None,
       input_shape=input_shape,
@@ -197,7 +185,7 @@ def inceptionV3(num_classes=10, input_shape=(32, 32, 1)):
     return inception
 
 
-def nasnet(num_classes=10, input_shape=(32, 32, 1)):
+def nasnet(num_classes=10, input_shape=(56, 56, 1)):
     nasnet = NASNetMobile(input_shape=input_shape, include_top=True,
       weights=None,
       input_tensor=None,
