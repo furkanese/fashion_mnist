@@ -8,17 +8,18 @@ Toplamda 60.000 tane eğitim, 10.000 tane test verisi bulunmaktadır. 28x28 gri 
 
 Sınıflar:
 
-|Label|Class|
-|0|T-shirt/top|
-|1|Trouser|
-|2|Pullover|
-|3|Dress|
-|4|Coat|
-|5|Sandal|
-|6|Shirt|
-|7|Sneaker|
-|8|Bag|
-|9|Ankle boot|
+| Label | Class 	|
+| ----- |:-------------:|
+| 0 	| T-shirt/top 	|
+| 1 	| Trouser 	|
+| 2 	| Pullover 	|
+| 3 	| Dress 	|
+| 4 	| Coat 		|
+| 5 	| Sandal 	|
+| 6 	| Shirt 	|
+| 7 	| Sneaker 	|
+| 8 	| Bag 		|
+| 9 	| Ankle boot 	|
 
 ## Kurulum - Çalıştırma
 ### Docker kurulumu
@@ -34,7 +35,7 @@ Aşağıdaki komut çalışıyorsa sistem hazırdır: <br>
 
 sudo docker run hello-world <br><br>
 
-### Keraslı containerın oluşturulması
+### Keraslı image oluşturulması
 cd docker <br>
 docker build --no-cache=true -t docker_cpu:latest . <br><br>
 
@@ -54,4 +55,4 @@ Transfer learning için pre_trained_tuning.ipynb
 çalıştırılabilir.
 
 ### Sonuçlar
-<img src="images/result.png" width="50%">
+<img src="images/results.png" width="50%">
